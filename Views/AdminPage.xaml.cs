@@ -4,8 +4,6 @@ namespace MotorSports.AppOne.Views;
 
 public partial class AdminPage : ContentPage
 {
-    private EventApiService? EventApiService;
-
     public AdminPage()
     {
         InitializeComponent();
