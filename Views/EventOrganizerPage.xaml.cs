@@ -30,31 +30,6 @@ public partial class EventOrganizerPage : ContentPage
 
     private async void ButtonViewAllEvents_Click(object sender, EventArgs e)
     {
-        try
-        {
-            if (EventApiService != null)
-            {
-                string jsonData = await EventApiService.GetAllEvents();
-
-                if (!string.IsNullOrEmpty(jsonData))
-                {
-                    var events = JsonConvert.DeserializeObject<List<Event>>(jsonData);
-                    EventsList.Clear();
-
-                    foreach (var evnt in events)
-                    {
-                        EventsList.Add(evnt);
-                    }
-                }
-                else
-                {
-                    await DisplayAlert("Error", "No events found.", "OK");
-                }
-            }
-        }
-        catch (Exception ex)
-        {
-            await DisplayAlert("Error", $"Failed to fetch events: {ex.Message}", "OK");
-        }
+        await Navigation.PushAsync(new ViewAllEventsPage());
     }
 }

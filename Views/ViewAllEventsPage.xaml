@@ -3,24 +3,49 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MotorSports.AppOne.Views.ViewAllEventsPage"
              Title="All Events">
-    <StackLayout>
-        <Button Text="Go Back" Clicked="ButtonGoBack_Click"/>
+    <ScrollView>
+        <Grid Padding="10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
 
-        <CollectionView x:Name="EventsCollectionView"
-        Grid.Row="4"
-        ItemsSource="{Binding EventsList}">
-            <CollectionView.ItemTemplate>
-                <DataTemplate>
-                    <Frame Padding="10" Margin="5" BackgroundColor="LightGray">
-                        <StackLayout>
-                            <Label Text="{Binding Name}" FontSize="20" FontAttributes="Bold"/>
-                            <Label Text="{Binding Date}" FontSize="16"/>
-                            <Label Text="{Binding Location}" FontSize="14" TextColor="Gray"/>
-                        </StackLayout>
-                    </Frame>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
+            <Button Text="Go Back" Clicked="ButtonGoBack_Click" Grid.Row="0" />
 
-    </StackLayout>
+            <CollectionView x:Name="EventsCollectionView"
+                            ItemsSource="{Binding EventsList}" 
+                            Grid.Row="1">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame Padding="10" Margin="5" BackgroundColor="Black">
+                            <StackLayout>
+                                <Label Text="{Binding EventId}" FontSize="18" FontAttributes="Bold" />
+                                <Label Text="{Binding EventName}" FontSize="20" FontAttributes="Bold"/>
+                                <Label Text="{Binding VenueName}" FontSize="16" />
+                                <Label Text="{Binding EventDate, StringFormat='{0:MMMM dd, yyyy HH:mm}'}" FontSize="14" />
+                                <Label Text="{Binding TotalLaps}" FontSize="14" />
+                                <Label Text="{Binding StatusName}" FontSize="14" FontAttributes="Italic" TextColor="DarkBlue"/>
+
+                                <!-- Display sponsors if available -->
+                                <Label Text="Sponsors:" FontSize="16" FontAttributes="Bold" 
+                                       IsVisible="{Binding EventSponsors, Converter={StaticResource NullToBoolConverter}}" />
+                                <CollectionView ItemsSource="{Binding EventSponsors}">
+                                    <CollectionView.ItemTemplate>
+                                        <DataTemplate>
+                                            <Label Text="{Binding SponsorName}" FontSize="14" TextColor="DarkGreen"/>
+                                        </DataTemplate>
+                                    </CollectionView.ItemTemplate>
+                                </CollectionView>
+
+                            </StackLayout>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </Grid>
+    </ScrollView>
 </ContentPage>

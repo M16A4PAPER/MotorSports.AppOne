@@ -23,6 +23,7 @@ public partial class ViewAllEventsPage : ContentPage
         try
         {
             string jsonData = await _eventApiService.GetAllEvents();
+            Console.WriteLine($"API Response: {jsonData}"); // Debug log
 
             if (!string.IsNullOrEmpty(jsonData))
             {

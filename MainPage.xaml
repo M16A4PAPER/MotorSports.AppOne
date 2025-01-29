@@ -4,7 +4,7 @@
              x:Class="MotorSports.AppOne.MainPage">
 
     <Grid>
-        <Image Source="designer.png"
+        <Image Source="designer_1.jpeg"
                Aspect="Fill"
                HorizontalOptions="FillAndExpand"
                VerticalOptions="FillAndExpand" />
