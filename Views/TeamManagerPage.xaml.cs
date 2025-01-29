@@ -6,4 +6,14 @@ public partial class TeamManagerPage : ContentPage
 	{
 		InitializeComponent();
 	}
+
+    private void ButtonManageTeam_Click(object sender, EventArgs e)
+    {
+
+    }
+
+    private void ButtonViewTeamPerformance_Click(object sender, EventArgs e)
+    {
+
+    }
 }

@@ -3,10 +3,39 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MotorSports.AppOne.Views.SpectatorPage"
              Title="SpectatorPage">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to the Spectator Options!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+    <Grid VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+        <!-- Image as background -->
+        <Image Source="designer_6.jpeg"
+               Aspect="Fill"
+               HorizontalOptions="FillAndExpand"
+               VerticalOptions="FillAndExpand"/>
+
+        <!-- Dark overlay to darken the background -->
+        <BoxView Color="Black" Opacity="0.45" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
+
+        <!-- Layout for buttons and label -->
+        <StackLayout HorizontalOptions="Center" VerticalOptions="Center" Spacing="10">
+            <Label 
+                Text="Welcome to the Spectator Options!"
+                FontSize="24"
+                FontAttributes="Bold"
+                HorizontalOptions="Center"
+                VerticalOptions="Center"
+                FontFamily="Century Gothic" />
+
+            <Button 
+                Text="View Race Schedule"
+                HorizontalOptions="Center"
+                VerticalOptions="Center"
+                FontFamily="Century Gothic"
+                Clicked="ButtonViewRaceSchedule_Click" />
+
+            <Button 
+                Text="View Race Standings"
+                HorizontalOptions="Center"
+                VerticalOptions="Center"
+                FontFamily="Century Gothic"
+                Clicked="ButtonViewRaceStandings_Click" />
+        </StackLayout>
+    </Grid>
 </ContentPage>

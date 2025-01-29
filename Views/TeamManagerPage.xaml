@@ -3,10 +3,39 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MotorSports.AppOne.Views.TeamManagerPage"
              Title="TeamManagerPage">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to the Team Manager Options!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+    <Grid VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+        <!-- Image as background -->
+        <Image Source="designer_8.jpeg"
+               Aspect="Fill"
+               HorizontalOptions="FillAndExpand"
+               VerticalOptions="FillAndExpand"/>
+
+        <!-- Dark overlay to darken the background -->
+        <BoxView Color="Black" Opacity="0.45" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
+
+        <!-- Layout for buttons and label -->
+        <StackLayout HorizontalOptions="Center" VerticalOptions="Center" Spacing="20">
+            <Label 
+                Text="Welcome to the Team Manager Options!"
+                FontSize="24"
+                FontAttributes="Bold"
+                HorizontalOptions="Center"
+                VerticalOptions="Center"
+                FontFamily="Century Gothic" />
+
+            <Button 
+                Text="Manage Team"
+                HorizontalOptions="Center"
+                VerticalOptions="Center"
+                FontFamily="Century Gothic"
+                Clicked="ButtonManageTeam_Click" />
+
+            <Button 
+                Text="View Team Performance"
+                HorizontalOptions="Center"
+                VerticalOptions="Center"
+                FontFamily="Century Gothic"
+                Clicked="ButtonViewTeamPerformance_Click" />
+        </StackLayout>
+    </Grid>
 </ContentPage>
