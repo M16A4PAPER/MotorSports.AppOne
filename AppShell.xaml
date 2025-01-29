@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="MotorSports.AppOne.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:MotorSports.AppOne"
+    xmlns:views="clr-namespace:MotorSports.AppOne.Views"
+    Shell.FlyoutBehavior="Disabled"
+    Title="MotorSports.AppOne">
+
+    <TabBar>
+        <!-- Home Tab -->
+        <ShellContent
+        Title="Home"
+        Icon="home_icon.png"
+        ContentTemplate="{DataTemplate local:MainPage}"
+        Route="MainPage" />
+
+        <!-- Admin Tab -->
+        <ShellContent
+        Title="Admin"
+        Icon="admin.png"
+        ContentTemplate="{DataTemplate views:AdminPage}"
+        Route="AdminPage" />
+
+        <!-- Event Organizer Tab -->
+        <ShellContent
+        Title="Event Organizer"
+        Icon="event_organizer.png"
+        ContentTemplate="{DataTemplate views:EventOrganizerPage}"
+        Route="EventOrganizerPage" />
+
+        <!-- Participant Tab -->
+        <ShellContent
+        Title="Participant"
+        Icon="participant.png"
+        ContentTemplate="{DataTemplate views:ParticipantPage}"
+        Route="ParticipantPage" />
+
+        <!-- Race Official Tab -->
+        <ShellContent
+        Title="Race Official"
+        Icon="race_official.png"
+        ContentTemplate="{DataTemplate views:RaceOfficialPage}"
+        Route="RaceOfficialPage" />
+
+        <!-- Spectator Tab -->
+        <ShellContent
+        Title="Spectator"
+        Icon="spectator.png"
+        ContentTemplate="{DataTemplate views:SpectatorPage}"
+        Route="SpectatorPage" />
+
+        <!-- Sponsor Tab -->
+        <ShellContent
+        Title="Sponsor"
+        Icon="sponsor.png"
+        ContentTemplate="{DataTemplate views:SponsorPage}"
+        Route="SponsorPage" />
+
+        <!-- Team Manager Tab -->
+        <ShellContent
+        Title="Team Manager"
+        Icon="team_manager.png"
+        ContentTemplate="{DataTemplate views:TeamManagerPage}"
+        Route="TeamManagerPage" />
+    </TabBar>
+
+
+
+
+</Shell>

@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MotorSports.AppOne.MainPage">
+
+    <Grid>
+        <Image Source="designer.png"
+               Aspect="Fill"
+               HorizontalOptions="FillAndExpand"
+               VerticalOptions="FillAndExpand" />
+
+        <!-- Dark overlay to darken the background -->
+        <BoxView Color="Black" Opacity="0.45" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
+
+        <!-- Content on top of the background -->
+        <StackLayout VerticalOptions="StartAndExpand" HorizontalOptions="Center" Padding="20">
+            <Label Text="Welcome to the MotorSport Interactive App!"
+                   FontSize="32"
+                   TextColor="Beige"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Start"
+                   FontFamily="Century Gothic"
+                   FontAttributes="Bold"
+                   Padding="20, 60, 20, 20"/>
+            <!-- Added padding to move text down -->
+
+            <Label Text="Experience the thrill and excitement of motorsports. Join us in celebrating speed, strategy, and skill as we bring you closer to the heart of the action."
+                   FontSize="19"
+                   TextColor="Beige"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center"
+                   FontFamily="Century Gothic"
+                   LineBreakMode="WordWrap"/>
+        </StackLayout>
+    </Grid>
+
+
+</ContentPage>
