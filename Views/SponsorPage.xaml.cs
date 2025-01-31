@@ -1,15 +1,25 @@
+using MotorSports.AppOne.Models;
+using MotorSports.AppOne.Services;
+using MotorSports.DomainObjects;
+using System.Collections.ObjectModel;
+
 namespace MotorSports.AppOne.Views;
 
 public partial class SponsorPage : ContentPage
 {
-	public SponsorPage()
-	{
-		InitializeComponent();
-	}
+    private ApiService _apiService;
+    public ObservableCollection<Sponsor> SponsorsList { get; set; } = new();
 
-    private void ButtonViewSponsorships_Click(object sender, EventArgs e)
+    public SponsorPage()
     {
+        InitializeComponent();
+        _apiService = new ApiService();
+        BindingContext = this;
+    }
 
+    private async void ButtonViewSponsorships_Click(object sender, EventArgs e)
+    {
+      //  await Navigation.PushAsync(new SponsorListPage());
     }
 
     private void ButtonRemoveSponsorship_Click(object sender, EventArgs e)

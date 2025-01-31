@@ -7,13 +7,13 @@ public partial class SpectatorPage : ContentPage
 		InitializeComponent();
 	}
 
-    private void ButtonViewRaceSchedule_Click(object sender, EventArgs e)
+    private async void ButtonViewRaceSchedule_Click(object sender, EventArgs e)
     {
-
+        await Navigation.PushAsync(new ViewAllEventsPage());
     }
 
-    private void ButtonViewRaceStandings_Click(object sender, EventArgs e)
+    private async void ButtonViewRaceStandings_Click(object sender, EventArgs e)
     {
-
+        await Navigation.PushAsync(new RaceResultsPage());
     }
 }

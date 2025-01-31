@@ -7,13 +7,13 @@ namespace MotorSports.AppOne.Views;
 
 public partial class ViewAllEventsPage : ContentPage
 {
-	private EventApiService _eventApiService;
+	private ApiService _eventApiService;
 	public ObservableCollection<Event> EventsList { get; set; } = new();
 
 	public ViewAllEventsPage()
 	{
 		InitializeComponent();
-		_eventApiService = new EventApiService();
+		_eventApiService = new ApiService();
 		BindingContext = this;
         LoadEvents();
 	}

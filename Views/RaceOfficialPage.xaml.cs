@@ -7,9 +7,9 @@ public partial class RaceOfficialPage : ContentPage
 		InitializeComponent();
 	}
 
-    private void ButtonShowResults_Click(object sender, EventArgs e)
+    private async void ButtonShowResults_Click(object sender, EventArgs e)
     {
-
+        await Navigation.PushAsync(new RaceResultsPage());
     }
 
     private void ButtonAssignPositions_Click(object sender, EventArgs e)

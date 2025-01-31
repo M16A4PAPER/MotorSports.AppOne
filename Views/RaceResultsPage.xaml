@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MotorSports.AppOne.Views.RaceResultsPage"
+             Title="Race Results">
+    <ScrollView>
+        <Grid Padding="10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <Button Text="Go Back"
+                    Clicked="OnGoBackClicked"
+                    Grid.Row="0" />
+
+            <!-- CollectionView to display race results -->
+            <CollectionView x:Name="ResultsCollectionView"
+                            ItemsSource="{Binding RaceResultList}"
+                            Grid.Row="1">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame Padding="10" Margin="5" BackgroundColor="Black">
+                            <StackLayout> 
+                                <Label Text="{Binding Position}" FontSize="20" FontAttributes="Bold" TextColor="White"/>
+                                <Label Text="{Binding LapNumber}" FontSize="16" TextColor="White"/>
+                                <Label Text="{Binding LapTime}" FontSize="16" TextColor="White"/>
+                            </StackLayout>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </Grid>
+    </ScrollView>
+</ContentPage>

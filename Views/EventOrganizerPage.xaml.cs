@@ -8,13 +8,13 @@ namespace MotorSports.AppOne.Views;
 
 public partial class EventOrganizerPage : ContentPage
 {
-    private EventApiService? EventApiService;
+    private ApiService? EventApiService;
     public ObservableCollection<Event> EventsList { get; set; } = new();
 
     public EventOrganizerPage()
     {
         InitializeComponent();
-        EventApiService = new EventApiService();
+        EventApiService = new ApiService();
         BindingContext = this; //Set binding context to this page.
     }
 
