@@ -18,9 +18,9 @@ public partial class EventOrganizerPage : ContentPage
         BindingContext = this; //Set binding context to this page.
     }
 
-    private void ButtonCreateEvent_Click(object sender, EventArgs e)
+    private async void ButtonCreateEvent_Click(object sender, EventArgs e)
     {
-
+        await Navigation.PushAsync(new EventCreationPage());
     }
 
     private void ButtonManageEvent_Click(object sender, EventArgs e)

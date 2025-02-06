@@ -13,16 +13,15 @@ namespace MotorSports.AppOne.Services
      class ApiService
     {
         readonly HttpClient client = new();
+        string apiUrl = "https://motorsportapidev-cfgddcd9awb6gedr.uaenorth-01.azurewebsites.net/api/events";
 
         public async Task<string> GetAllEvents()
         {
-            string apiUrl = "https://localhost:7060/api/events";
-
             string jsonString = string.Empty;
 
             try
             {
-                var result = await client.GetAsync(apiUrl);
+                var result = await client.GetAsync(apiUrl); 
 
                 if (result.IsSuccessStatusCode)
                 {
@@ -44,8 +43,6 @@ namespace MotorSports.AppOne.Services
 
         public async Task<string> GetRaceResults()
         {
-            string apiUrl = "https://localhost:7060/api/participants/results";
-
             string jsonString = string.Empty;
 
             try
@@ -69,6 +66,36 @@ namespace MotorSports.AppOne.Services
             return jsonString;
         }
 
-        
+        public async Task<string> CreateEvent(EventCreationRequest eventRequest)
+        {
+            try
+            {
+                var jsonContent = JsonConvert.SerializeObject(eventRequest);
+                var content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
+
+                var response = await client.PostAsync(apiUrl, content);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    return await response.Content.ReadAsStringAsync(); // Success response
+                }
+                else
+                {
+                    // Get detailed error message
+                    string errorMessage = await response.Content.ReadAsStringAsync();
+                    return $"Error: {response.StatusCode} - {errorMessage}";
+                }
+            }
+            catch (HttpRequestException httpEx)
+            {
+                return $"Network error: {httpEx.Message}";
+            }
+            catch (Exception ex)
+            {
+                return $"Unexpected error: {ex.Message}";
+            }
+        }
+
+
     }
 }

@@ -21,7 +21,7 @@
                             Grid.Row="1">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <Frame Padding="10" Margin="5" BackgroundColor="Black">
+                        <Frame Padding="10" Margin="5" BackgroundColor="Gray">
                             <StackLayout>
                                 <Label Text="{Binding EventId}" FontSize="18" FontAttributes="Bold" />
                                 <Label Text="{Binding EventName}" FontSize="20" FontAttributes="Bold"/>
