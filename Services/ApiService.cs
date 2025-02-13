@@ -1,123 +1,85 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using MotorSports.AppOne.Models;
-using System.Net.Http.Headers;
 
 namespace MotorSports.AppOne.Services
 {
-    class ApiService
+    public class ApiService
     {
         private readonly HttpClient client;
-
-        private readonly string baseUrl = "https://motorsportapidev-cfgddcd9awb6gedr.uaenorth-01.azurewebsites.net/api";
+        private const string BaseUrl = "https://motorsportapidev-cfgddcd9awb6gedr.uaenorth-01.azurewebsites.net/api";
 
         public ApiService()
         {
             client = new HttpClient();
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-
-            // if API requires authentication
-            // client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", "Token");
         }
 
-        // Get All Events
-        public async Task<string> GetAllEvents()
-        {
-            return await GetApiResponse($"{baseUrl}/events");
-        }
+        //  Event APIs
+        public Task<string> GetAllEvents() => Get($"{BaseUrl}/events");
+        public Task<string> GetRaceResults() => Get($"{BaseUrl}/participants/results");
+        public Task<string> CreateEvent(EventCreationRequest request) => Post($"{BaseUrl}/events", request);
+        public Task<string> AssignSponsorToEvent(int eventId, int sponsorId) => Post($"{BaseUrl}/events/AddSponsor", new { EventId = eventId, SponsorId = sponsorId });
+        public Task<string> AssignTeamToEvent(int eventId, int teamId) => Post($"{BaseUrl}/events/AssignTeam", new { EventId = eventId, TeamId = teamId });
 
-        // Get Race Results
-        public async Task<string> GetRaceResults()
-        {
-            return await GetApiResponse($"{baseUrl}/participants/results");
-        }
+        //  Admin APIs
+        public Task<string> AssignRoleToUser(int userId, int roleId) => Post($"{BaseUrl}/admin/AssignRole", new { UserId = userId, RoleId = roleId });
+        public Task<string> RemoveUserRole(int userId, int roleId) => Delete($"{BaseUrl}/admin/Role", new { UserId = userId, RoleId = roleId });
+        public Task<string> GetAllEventStatuses() => Get($"{BaseUrl}/admin/AllStatuses");
 
-        // Create a new Event
-        public async Task<string> CreateEvent(EventCreationRequest eventRequest)
-        {
-            return await PostApiResponse($"{baseUrl}/events", eventRequest);
-        }
-
-        // Assign Sponsor to Event
-        public async Task<string> AssignSponsorToEvent(int eventId, int sponsorId)
-        {
-            var requestBody = new
-            {
-                EventId = eventId,
-                SponsorId = sponsorId
-            };
-
-            return await PostApiResponse($"{baseUrl}/events/AddSponsor", requestBody);
-        }
-
-        public async Task<string> AssignTeamToEvent(int eventId, int teamId)
-        {
-            var requestBody = new
-            {
-                EventId = eventId,
-                TeamId = teamId
-            };
-
-            // this API does not exist
-            string url = $"{baseUrl}/events/AssignTeam";
-
-            return await PostApiResponse(url, requestBody);
-        }
+        //Participant APIs
+        public Task<string> RegisterTeamForRace(RaceRegistration registration)
+    => Post($"{BaseUrl}/participants", registration);
 
 
-        // Helper Method for GET Requests (with logging)
-        private async Task<string> GetApiResponse(string url)
+        // ✅ Get Users and Roles (Updated)
+        public async Task<List<UserRole>> GetUsersAndRoles()
         {
             try
             {
-                Console.WriteLine($"[DEBUG] Sending GET request to: {url}");
+                var response = await client.GetAsync($"{BaseUrl}/admin/AllRoles");
+                if (!response.IsSuccessStatusCode) return new List<UserRole>();
 
-                var response = await client.GetAsync(url);
-                string responseMessage = await response.Content.ReadAsStringAsync();
-
-                Console.WriteLine($"[DEBUG] Response: {response.StatusCode} - {responseMessage}");
-
-                return response.IsSuccessStatusCode ? responseMessage : $"Error: {response.StatusCode} - {responseMessage}";
+                var json = await response.Content.ReadAsStringAsync();
+                return JsonConvert.DeserializeObject<List<UserRole>>(json) ?? new List<UserRole>();
             }
-            catch (HttpRequestException httpEx)
+            catch
             {
-                return $"Network error: {httpEx.Message}";
-            }
-            catch (Exception ex)
-            {
-                return $"Unexpected error: {ex.Message}";
+                return new List<UserRole>();
             }
         }
 
-        // Helper Method for POST Requests (with logging)
-        private async Task<string> PostApiResponse(string url, object requestData)
+        //  Helper Methods
+        private async Task<string> Get(string url)
         {
-            try
-            {
-                var jsonContent = JsonConvert.SerializeObject(requestData);
-                var content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
+            var response = await client.GetAsync(url);
+            return await HandleResponse(response);
+        }
 
-                Console.WriteLine($"[DEBUG] Sending POST request to: {url}");
-                Console.WriteLine($"[DEBUG] Request Body: {jsonContent}");
+        private async Task<string> Post(string url, object data)
+        {
+            var content = new StringContent(JsonConvert.SerializeObject(data), Encoding.UTF8, "application/json");
+            var response = await client.PostAsync(url, content);
+            return await HandleResponse(response);
+        }
 
-                var response = await client.PostAsync(url, content);
-                string responseMessage = await response.Content.ReadAsStringAsync();
+        private async Task<string> Delete(string url, object data)
+        {
+            var content = new StringContent(JsonConvert.SerializeObject(data), Encoding.UTF8, "application/json");
+            var request = new HttpRequestMessage(HttpMethod.Delete, url) { Content = content };
+            var response = await client.SendAsync(request);
+            return await HandleResponse(response);
+        }
 
-                Console.WriteLine($"[DEBUG] Response: {response.StatusCode} - {responseMessage}");
-
-                return response.IsSuccessStatusCode ? responseMessage : $"Error: {response.StatusCode} - {responseMessage}";
-            }
-            catch (HttpRequestException httpEx)
-            {
-                return $"Network error: {httpEx.Message}";
-            }
-            catch (Exception ex)
-            {
-                return $"Unexpected error: {ex.Message}";
-            }
+        private static async Task<string> HandleResponse(HttpResponseMessage response)
+        {
+            string message = await response.Content.ReadAsStringAsync();
+            return response.IsSuccessStatusCode ? message : $"Error: {response.StatusCode} - {message}";
         }
     }
 }

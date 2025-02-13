@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="MotorSports.AppOne.Views.RaceRegistrationPage"
-             Title="Race Registration">
+             x:Class="MotorSports.AppOne.Views.AssignRolePage"
+             Title="Assign Role">
+
     <Grid VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
         <!-- Background Image -->
-        <Image Source="designer_4.jpeg"
+        <Image Source="designer_3.jpeg"
                Aspect="Fill"
                HorizontalOptions="FillAndExpand"
                VerticalOptions="FillAndExpand"/>
 
-        <!-- Dark overlay -->
+        <!-- Dark Overlay -->
         <BoxView Color="Black" Opacity="0.45" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
 
         <!-- Layout for Go Back Button -->
@@ -20,38 +21,31 @@
                     Clicked="OnGoBackClicked"/>
         </StackLayout>
 
-        <!-- Layout for the form -->
-        <StackLayout HorizontalOptions="Center" VerticalOptions="Center" Spacing="10" Padding="20">
-            <Label Text="Race Registration"
+        <!-- Form Layout -->
+        <StackLayout HorizontalOptions="Center" VerticalOptions="Center" Spacing="15" Padding="20">
+            <Label Text="Assign Role to User"
                    FontSize="24"
                    FontAttributes="Bold"
                    HorizontalOptions="Center"
                    TextColor="White"
-                   FontFamily="Century Gothic"
-                   Margin="0,0,0,20"/>
+                   FontFamily="Century Gothic" />
 
-            <!-- Team ID Entry -->
-            <Entry x:Name="TeamIdEntry"
-                   Placeholder="Enter Team ID"
+            <Entry x:Name="UserIdEntry"
+                   Placeholder="Enter User ID"
+                   Keyboard="Numeric" 
                    FontFamily="Century Gothic"
+                   TextColor="Black"
+                   BackgroundColor="White"/>
+
+            <Entry x:Name="RoleIdEntry"
+                   Placeholder="Enter Role ID"
                    Keyboard="Numeric"
-                   BackgroundColor="White"
-                   TextColor="Black"/>
-
-            <!-- Event ID Entry -->
-            <Entry x:Name="EventIdEntry"
-                   Placeholder="Enter Event ID"
                    FontFamily="Century Gothic"
-                   Keyboard="Numeric"
-                   BackgroundColor="White"
-                   TextColor="Black"/>
+                   TextColor="Black"
+                   BackgroundColor="White"/>
 
-            <!-- Submit Button -->
             <Button Text="Submit"
                     FontFamily="Century Gothic"
-                    BackgroundColor="Blue"
-                    TextColor="White"
-                    HorizontalOptions="Center"
                     Clicked="OnSubmitClicked"/>
         </StackLayout>
     </Grid>

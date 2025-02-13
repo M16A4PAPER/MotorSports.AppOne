@@ -11,12 +11,12 @@ namespace MotorSports.AppOne.Views
 
         private async void SetEventStatus_Click(object sender, EventArgs e)
         {
-            await DisplayAlert("Not Implemented", "The API for Setting Event Status is not available.", "OK");
+            await Navigation.PushAsync(new SetEventStatus());
         }
 
         private async void ViewEventStatus_Click(object sender, EventArgs e)
         {
-            await DisplayAlert("Not Implemented", "The API for Viewing Event Status is not available.", "OK");
+            await Navigation.PushAsync(new ViewEventStatus());
         }
 
         private async void OnGoBackClicked(object sender, EventArgs e)
