@@ -7,13 +7,13 @@ public partial class TeamManagerPage : ContentPage
 		InitializeComponent();
 	}
 
-    private void ButtonManageTeam_Click(object sender, EventArgs e)
+    private async void ButtonManageTeam_Click(object sender, EventArgs e)
     {
-
+        await Navigation.PushAsync(new ManageTeamOptions());
     }
 
-    private void ButtonViewTeamPerformance_Click(object sender, EventArgs e)
+    private async void ButtonViewTeamPerformance_Click(object sender, EventArgs e)
     {
-
+        await Navigation.PushAsync(new TeamPerformance());
     }
 }

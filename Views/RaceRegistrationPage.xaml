@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MotorSports.AppOne.Views.RaceRegistrationPage"
+             Title="Race Registration">
+    <Grid VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+        <!-- Background Image -->
+        <Image Source="designer_4.jpeg"
+               Aspect="Fill"
+               HorizontalOptions="FillAndExpand"
+               VerticalOptions="FillAndExpand"/>
+
+        <!-- Dark overlay -->
+        <BoxView Color="Black" Opacity="0.45" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
+
+        <!-- Layout for Go Back Button -->
+        <StackLayout Padding="10">
+            <Button Text="Go Back"
+                    FontFamily="Century Gothic"
+                    Clicked="OnGoBackClicked"/>
+        </StackLayout>
+
+        <!-- Layout for the form -->
+        <StackLayout HorizontalOptions="Center" VerticalOptions="Center" Spacing="10" Padding="20">
+            <Label Text="Race Registration"
+                   FontSize="24"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center"
+                   TextColor="White"
+                   FontFamily="Century Gothic"
+                   Margin="0,0,0,20"/>
+
+            <Entry Placeholder="Enter Team ID"
+                   FontFamily="Century Gothic"
+                   Keyboard="Numeric"
+                   BackgroundColor="White"
+                   TextColor="Black"/>
+
+            <Entry Placeholder="Enter Event ID"
+                   FontFamily="Century Gothic"
+                   Keyboard="Numeric"
+                   BackgroundColor="White"
+                   TextColor="Black"/>
+
+            <Button Text="Submit"
+                    FontFamily="Century Gothic"
+                    BackgroundColor="Blue"
+                    TextColor="White"
+                    HorizontalOptions="Center"/>
+        </StackLayout>
+    </Grid>
+</ContentPage>

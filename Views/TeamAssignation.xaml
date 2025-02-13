@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MotorSports.AppOne.Views.TeamAssignation"
+             Title="Assign Team">
+    <Grid Padding="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <!-- Row for Go Back button -->
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Go Back Button at the Top -->
+        <Button Text="Go Back"
+                Grid.Row="0"
+                Clicked="GoBackButton_Click"
+                BackgroundColor="Gray"
+                TextColor="White"
+                HorizontalOptions="Start"/>
+
+        <!-- Event ID -->
+        <Label Text="Event ID:" FontSize="16" Grid.Row="1"/>
+        <Entry x:Name="txtEventId" Placeholder="Enter Event ID" Keyboard="Numeric" Grid.Row="2"/>
+
+        <!-- Team ID -->
+        <Label Text="Team ID:" FontSize="16" Grid.Row="3"/>
+        <Entry x:Name="txtTeamId" Placeholder="Enter Team ID" Keyboard="Numeric" Grid.Row="4"/>
+
+        <!-- Submit Button -->
+        <Button Text="Submit"
+                x:Name="btnSubmit"
+                Grid.Row="5"
+                Clicked="SubmitButton_Click"
+                BackgroundColor="Blue"
+                TextColor="White"/>
+
+        <!-- Message Label -->
+        <Label x:Name="lblMessage"
+               Grid.Row="6"
+               TextColor="Red"
+               FontSize="14"
+               HorizontalOptions="Center"/>
+    </Grid>
+</ContentPage>

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="MotorSports.AppOne.Views.EventOrganizerPage"
-             Title="EventOrganizerPage">
+             x:Class="MotorSports.AppOne.Views.ManageEventsPage"
+             Title="Manage Events">
     <Grid VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
         <!-- Image as background -->
         <Image Source="designer_3.jpeg"
@@ -13,36 +13,28 @@
         <!-- Dark overlay to darken the background -->
         <BoxView Color="Black" Opacity="0.45" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
 
-        <!-- Layout for buttons and label -->
+        <!-- Layout for Go Back Button -->
+        <StackLayout Padding="10">
+            <Button Text="Go Back"
+                    FontFamily="Century Gothic"
+                    Clicked="OnGoBackClicked"/>
+        </StackLayout>
+
+        <!-- Layout for main buttons -->
         <StackLayout HorizontalOptions="Center" VerticalOptions="Center" Spacing="10">
-            <Label 
-                Text="Welcome to the Organizer Options!"
-                FontSize="24"
-                FontAttributes="Bold"
-                HorizontalOptions="Center"
-                VerticalOptions="Center"
-                FontFamily="Century Gothic" />
-
             <Button 
-                Text="Create Event"
+                Text="Assign Sponsor to Event"
                 HorizontalOptions="Center"
                 VerticalOptions="Center"
                 FontFamily="Century Gothic"
-                Clicked="ButtonCreateEvent_Click" />
+                Clicked="ButtonAssignSponsor_Click" />
 
             <Button 
-                Text="Manage Event Options"
+                Text="Assign Team to Event"
                 HorizontalOptions="Center"
                 VerticalOptions="Center"
                 FontFamily="Century Gothic"
-                Clicked="ButtonManageEvent_Click" />
-
-            <Button 
-                Text="View All Events"
-                HorizontalOptions="Center"
-                VerticalOptions="Center"
-                FontFamily="Century Gothic"
-                Clicked="ButtonViewAllEvents_Click" />
+                Clicked="ButtonAssignTeam_Click" />
         </StackLayout>
     </Grid>
 </ContentPage>

@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="MotorSports.AppOne.Views.EventCreationPage"
-             Title="Event Creation">
+             x:Class="MotorSports.AppOne.Views.AssignPositionPage"
+             Title="Assign Position">
 
     <Grid VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
         <!-- Background Image -->
-        <Image Source="designer_4.jpeg"
+        <Image Source="designer_6.jpeg"
                Aspect="Fill"
                HorizontalOptions="FillAndExpand"
                VerticalOptions="FillAndExpand"/>
 
-        <!-- Dark overlay -->
+        <!-- Dark Overlay -->
         <BoxView Color="Black" Opacity="0.45" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
 
         <!-- Layout for Go Back Button -->
@@ -21,10 +21,10 @@
                     Clicked="OnGoBackClicked"/>
         </StackLayout>
 
-        <!-- Layout for the form -->
+        <!-- Form Layout -->
         <ScrollView>
-            <StackLayout HorizontalOptions="Center" VerticalOptions="Center" Spacing="10" Padding="20">
-                <Label Text="Event Creation"
+            <StackLayout HorizontalOptions="Center" VerticalOptions="Center" Padding="20" Spacing="15">
+                <Label Text="Assign Position"
                        FontSize="24"
                        FontAttributes="Bold"
                        HorizontalOptions="Center"
@@ -32,53 +32,37 @@
                        FontFamily="Century Gothic"
                        Margin="0,0,0,20"/>
 
-                <Entry x:Name="txtEventName"
-                       Placeholder="Enter Event Name"
-                       FontFamily="Century Gothic"
-                       BackgroundColor="White"
-                       TextColor="Black"/>
-
-                <Entry x:Name="txtVenueId"
-                       Placeholder="Enter Venue ID"
+                <Entry x:Name="txtDriverId"
+                       Placeholder="Enter Driver ID"
                        FontFamily="Century Gothic"
                        Keyboard="Numeric"
                        BackgroundColor="White"
-                       TextColor="Black"/>
+                       TextColor="Black"
+                       Margin="0,10"/>
 
-                <Entry x:Name="txtEventDate"
-                       Placeholder="Enter Event Date (YYYY-MM-DD)"
-                       FontFamily="Century Gothic"
-                       BackgroundColor="White"
-                       TextColor="Black"/>
-
-                <Entry x:Name="txtTotalLaps"
-                       Placeholder="Enter Total Laps"
+                <Entry x:Name="txtPosition"
+                       Placeholder="Enter Position"
                        FontFamily="Century Gothic"
                        Keyboard="Numeric"
                        BackgroundColor="White"
-                       TextColor="Black"/>
-
-                <Entry x:Name="txtStatusId"
-                       Placeholder="Enter Status ID"
-                       FontFamily="Century Gothic"
-                       Keyboard="Numeric"
-                       BackgroundColor="White"
-                       TextColor="Black"/>
+                       TextColor="Black"
+                       Margin="0,10"/>
 
                 <Button Text="Submit"
                         FontFamily="Century Gothic"
                         BackgroundColor="Green"
                         TextColor="White"
                         HorizontalOptions="Center"
-                        Clicked="SubmitButton_Click"/>
+                        VerticalOptions="Center"
+                        Margin="0,10"/>
 
-                <!-- Message Label -->
                 <Label x:Name="lblMessage"
                        Text=""
                        FontFamily="Century Gothic"
                        TextColor="White"
                        FontSize="14"
-                       HorizontalOptions="Center"/>
+                       HorizontalOptions="Center"
+                       Margin="10"/>
             </StackLayout>
         </ScrollView>
     </Grid>

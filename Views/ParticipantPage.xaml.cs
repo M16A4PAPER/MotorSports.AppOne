@@ -14,14 +14,14 @@ public partial class ParticipantPage : ContentPage
 
 	}
 
-    private void ButtonViewUpcomingRaces_Click(object sender, EventArgs e)
+    private async void ButtonViewUpcomingRaces_Click(object sender, EventArgs e)
     {
-
+        await Navigation.PushAsync(new ViewAllEventsPage());
     }
 
-    private void ButtonRegisterForRace_Click(object sender, EventArgs e)
+    private async void ButtonRegisterForRace_Click(object sender, EventArgs e)
     {
-
+        await Navigation.PushAsync(new RaceRegistrationPage());
     }
 
     private async void ButtonViewResults_Click(object sender, EventArgs e)

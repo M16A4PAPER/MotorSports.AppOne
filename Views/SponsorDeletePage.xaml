@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MotorSports.AppOne.Views.SponsorDeletePage"
+             Title="Delete Sponsorship">
+
+    <Grid VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+        <!-- Background Image -->
+        <Image Source="designer_10.jpeg"
+               Aspect="Fill"
+               HorizontalOptions="FillAndExpand"
+               VerticalOptions="FillAndExpand"/>
+
+        <!-- Dark Overlay -->
+        <BoxView Color="Black" Opacity="0.45" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
+
+        <!-- Go Back Button -->
+        <StackLayout Padding="10">
+            <Button Text="Go Back"
+                    FontFamily="Century Gothic"
+                    Clicked="OnGoBackClicked"/>
+        </StackLayout>
+
+        <!-- Form Layout -->
+        <StackLayout HorizontalOptions="Center" VerticalOptions="Center" Padding="20" Spacing="15">
+            <Label Text="Delete Sponsorship"
+                   FontSize="24"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center"
+                   TextColor="White"
+                   FontFamily="Century Gothic"
+                   Margin="0,0,0,20"/>
+
+            <Entry x:Name="txtEventId"
+                   Placeholder="Enter Event ID"
+                   FontFamily="Century Gothic"
+                   Keyboard="Numeric"
+                   BackgroundColor="White"
+                   TextColor="Black"
+                   Margin="0,10"/>
+
+            <Entry x:Name="txtSponsorId"
+                   Placeholder="Enter Sponsor ID"
+                   FontFamily="Century Gothic"
+                   Keyboard="Numeric"
+                   BackgroundColor="White"
+                   TextColor="Black"
+                   Margin="0,10"/>
+
+            <Button Text="Submit"
+                    FontFamily="Century Gothic"
+                    BackgroundColor="Red"
+                    TextColor="White"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"
+                    Margin="0,10"/>
+        </StackLayout>
+    </Grid>
+</ContentPage>

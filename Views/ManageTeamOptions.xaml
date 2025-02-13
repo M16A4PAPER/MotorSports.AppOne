@@ -1,48 +1,56 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="MotorSports.AppOne.Views.EventOrganizerPage"
-             Title="EventOrganizerPage">
+             x:Class="MotorSports.AppOne.Views.ManageTeamOptions"
+             Title="Manage Team">
+
     <Grid VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
-        <!-- Image as background -->
-        <Image Source="designer_3.jpeg"
+        <!-- Background Image -->
+        <Image Source="designer_9.jpeg"
                Aspect="Fill"
                HorizontalOptions="FillAndExpand"
                VerticalOptions="FillAndExpand"/>
 
-        <!-- Dark overlay to darken the background -->
+        <!-- Dark Overlay -->
         <BoxView Color="Black" Opacity="0.45" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
 
-        <!-- Layout for buttons and label -->
-        <StackLayout HorizontalOptions="Center" VerticalOptions="Center" Spacing="10">
+        <!-- Go Back Button -->
+        <StackLayout Padding="10">
+            <Button Text="Go Back"
+                    FontFamily="Century Gothic"
+                    Clicked="OnGoBackClicked"/>
+        </StackLayout>
+
+        <!-- Layout for Buttons -->
+        <StackLayout HorizontalOptions="Center" VerticalOptions="Center" Spacing="20">
             <Label 
-                Text="Welcome to the Organizer Options!"
+                Text="Manage Team"
                 FontSize="24"
                 FontAttributes="Bold"
                 HorizontalOptions="Center"
-                VerticalOptions="Center"
+                TextColor="White"
                 FontFamily="Century Gothic" />
 
             <Button 
-                Text="Create Event"
+                Text="Add Player"
                 HorizontalOptions="Center"
                 VerticalOptions="Center"
                 FontFamily="Century Gothic"
-                Clicked="ButtonCreateEvent_Click" />
+                Clicked="ButtonAddPlayer_Click" />
 
             <Button 
-                Text="Manage Event Options"
+                Text="Remove Player"
                 HorizontalOptions="Center"
                 VerticalOptions="Center"
                 FontFamily="Century Gothic"
-                Clicked="ButtonManageEvent_Click" />
+                Clicked="ButtonRemovePlayer_Click" />
 
             <Button 
-                Text="View All Events"
+                Text="View Players"
                 HorizontalOptions="Center"
                 VerticalOptions="Center"
                 FontFamily="Century Gothic"
-                Clicked="ButtonViewAllEvents_Click" />
+                Clicked="ButtonViewPlayers_Click" />
         </StackLayout>
     </Grid>
 </ContentPage>

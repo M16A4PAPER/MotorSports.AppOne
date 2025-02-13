@@ -1,90 +1,86 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using MotorSports.AppOne.Models;
-using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
-using System.Web.Http;
+using Newtonsoft.Json;
+using MotorSports.AppOne.Models;
+using System.Net.Http.Headers;
 
 namespace MotorSports.AppOne.Services
 {
-     class ApiService
+    class ApiService
     {
-        readonly HttpClient client = new();
-        string apiUrl = "https://motorsportapidev-cfgddcd9awb6gedr.uaenorth-01.azurewebsites.net/api/events";
+        private readonly HttpClient client;
 
+        private readonly string baseUrl = "https://motorsportapidev-cfgddcd9awb6gedr.uaenorth-01.azurewebsites.net/api";
+
+        public ApiService()
+        {
+            client = new HttpClient();
+            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+            // if API requires authentication
+            // client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", "Token");
+        }
+
+        // Get All Events
         public async Task<string> GetAllEvents()
         {
-            string jsonString = string.Empty;
-
-            try
-            {
-                var result = await client.GetAsync(apiUrl); 
-
-                if (result.IsSuccessStatusCode)
-                {
-                    jsonString = await result.Content.ReadAsStringAsync();
-                }
-                else
-                {
-                    Console.WriteLine($"API Error: {result.StatusCode}");
-                }
-            }
-            catch (Exception ex)
-            {
-
-                Console.WriteLine($"Exception: {ex.Message}");
-            }
-
-            return jsonString;
+            return await GetApiResponse($"{baseUrl}/events");
         }
 
+        // Get Race Results
         public async Task<string> GetRaceResults()
         {
-            string jsonString = string.Empty;
-
-            try
-            {
-                var result = await client.GetAsync(apiUrl);
-
-                if (result.IsSuccessStatusCode)
-                {
-                    jsonString = await result.Content.ReadAsStringAsync();
-                }
-                else
-                {
-                    Console.WriteLine($"API Error: {result.StatusCode}");
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Exception: {ex.Message}");
-            }
-
-            return jsonString;
+            return await GetApiResponse($"{baseUrl}/participants/results");
         }
 
+        // Create a new Event
         public async Task<string> CreateEvent(EventCreationRequest eventRequest)
+        {
+            return await PostApiResponse($"{baseUrl}/events", eventRequest);
+        }
+
+        // Assign Sponsor to Event
+        public async Task<string> AssignSponsorToEvent(int eventId, int sponsorId)
+        {
+            var requestBody = new
+            {
+                EventId = eventId,
+                SponsorId = sponsorId
+            };
+
+            return await PostApiResponse($"{baseUrl}/events/AddSponsor", requestBody);
+        }
+
+        public async Task<string> AssignTeamToEvent(int eventId, int teamId)
+        {
+            var requestBody = new
+            {
+                EventId = eventId,
+                TeamId = teamId
+            };
+
+            // this API does not exist
+            string url = $"{baseUrl}/events/AssignTeam";
+
+            return await PostApiResponse(url, requestBody);
+        }
+
+
+        // Helper Method for GET Requests (with logging)
+        private async Task<string> GetApiResponse(string url)
         {
             try
             {
-                var jsonContent = JsonConvert.SerializeObject(eventRequest);
-                var content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
+                Console.WriteLine($"[DEBUG] Sending GET request to: {url}");
 
-                var response = await client.PostAsync(apiUrl, content);
+                var response = await client.GetAsync(url);
+                string responseMessage = await response.Content.ReadAsStringAsync();
 
-                if (response.IsSuccessStatusCode)
-                {
-                    return await response.Content.ReadAsStringAsync(); // Success response
-                }
-                else
-                {
-                    // Get detailed error message
-                    string errorMessage = await response.Content.ReadAsStringAsync();
-                    return $"Error: {response.StatusCode} - {errorMessage}";
-                }
+                Console.WriteLine($"[DEBUG] Response: {response.StatusCode} - {responseMessage}");
+
+                return response.IsSuccessStatusCode ? responseMessage : $"Error: {response.StatusCode} - {responseMessage}";
             }
             catch (HttpRequestException httpEx)
             {
@@ -96,6 +92,32 @@ namespace MotorSports.AppOne.Services
             }
         }
 
+        // Helper Method for POST Requests (with logging)
+        private async Task<string> PostApiResponse(string url, object requestData)
+        {
+            try
+            {
+                var jsonContent = JsonConvert.SerializeObject(requestData);
+                var content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
 
+                Console.WriteLine($"[DEBUG] Sending POST request to: {url}");
+                Console.WriteLine($"[DEBUG] Request Body: {jsonContent}");
+
+                var response = await client.PostAsync(url, content);
+                string responseMessage = await response.Content.ReadAsStringAsync();
+
+                Console.WriteLine($"[DEBUG] Response: {response.StatusCode} - {responseMessage}");
+
+                return response.IsSuccessStatusCode ? responseMessage : $"Error: {response.StatusCode} - {responseMessage}";
+            }
+            catch (HttpRequestException httpEx)
+            {
+                return $"Network error: {httpEx.Message}";
+            }
+            catch (Exception ex)
+            {
+                return $"Unexpected error: {ex.Message}";
+            }
+        }
     }
 }

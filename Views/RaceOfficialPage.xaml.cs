@@ -12,8 +12,8 @@ public partial class RaceOfficialPage : ContentPage
         await Navigation.PushAsync(new RaceResultsPage());
     }
 
-    private void ButtonAssignPositions_Click(object sender, EventArgs e)
+    private async void ButtonAssignPositions_Click(object sender, EventArgs e)
     {
-
+        await Navigation.PushAsync(new AssignPositionPage());
     }
 }

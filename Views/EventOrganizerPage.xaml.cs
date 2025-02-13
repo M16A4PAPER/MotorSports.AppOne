@@ -23,9 +23,9 @@ public partial class EventOrganizerPage : ContentPage
         await Navigation.PushAsync(new EventCreationPage());
     }
 
-    private void ButtonManageEvent_Click(object sender, EventArgs e)
+    private async void ButtonManageEvent_Click(object sender, EventArgs e)
     {
-
+        await Navigation.PushAsync(new ManageEventsPage());
     }
 
     private async void ButtonViewAllEvents_Click(object sender, EventArgs e)

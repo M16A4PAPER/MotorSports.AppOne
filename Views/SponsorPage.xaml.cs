@@ -19,11 +19,11 @@ public partial class SponsorPage : ContentPage
 
     private async void ButtonViewSponsorships_Click(object sender, EventArgs e)
     {
-      //  await Navigation.PushAsync(new SponsorListPage());
+        await Navigation.PushAsync(new SponsorViewPage());
     }
 
-    private void ButtonRemoveSponsorship_Click(object sender, EventArgs e)
+    private async void ButtonRemoveSponsorship_Click(object sender, EventArgs e)
     {
-
+        await Navigation.PushAsync(new SponsorDeletePage());
     }
 }

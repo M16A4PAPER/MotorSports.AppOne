@@ -9,13 +9,13 @@ public partial class AdminPage : ContentPage
         InitializeComponent();
     }
 
-    private void ButtonManageUsersAndRoles_Click(object sender, EventArgs e)
+    private async void ButtonManageUsersAndRoles_Click(object sender, EventArgs e)
     {
-
+        await Navigation.PushAsync(new ManageUsersAndRoles());
     }
 
-    private void ButtonManageEventStatus_Click(object sender, EventArgs e)
+    private async void ButtonManageEventStatus_Click(object sender, EventArgs e)
     {
-
+        await Navigation.PushAsync(new ManageEventStatus());
     }
 }

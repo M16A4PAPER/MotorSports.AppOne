@@ -15,7 +15,7 @@ namespace MotorSports.AppOne.Views
             InitializeComponent();
         }
 
-        private async void SubmitButton_Click(object sender, EventArgs e)
+        private async void OnSubmitClicked(object sender, EventArgs e)
         {
             // Get user input
             string eventName = txtEventName.Text?.Trim();
@@ -30,18 +30,21 @@ namespace MotorSports.AppOne.Views
                 string.IsNullOrWhiteSpace(statusId))
             {
                 lblMessage.Text = "All fields are required!";
+                lblMessage.TextColor = Colors.Red;
                 return;
             }
 
             if (!int.TryParse(venueId, out int venue) || !int.TryParse(totalLaps, out int laps) || !int.TryParse(statusId, out int status))
             {
                 lblMessage.Text = "Venue ID, Total Laps, and Status ID must be numbers!";
+                lblMessage.TextColor = Colors.Red;
                 return;
             }
 
             if (!DateTime.TryParseExact(eventDate, "yyyy-MM-dd", null, System.Globalization.DateTimeStyles.None, out DateTime parsedDate))
             {
                 lblMessage.Text = "Invalid date format! Use yyyy-mm-dd.";
+                lblMessage.TextColor = Colors.Red;
                 return;
             }
 
@@ -64,13 +67,20 @@ namespace MotorSports.AppOne.Views
             }
             else
             {
+                lblMessage.TextColor = Colors.Red;
                 lblMessage.Text = "Failed to create event.";
             }
         }
 
-        private async void Button_GoBackClick(object sender, EventArgs e)
+        private async void OnGoBackClicked(object sender, EventArgs e)
         {
             await Navigation.PopAsync();
+        }
+
+        // FIX: Link SubmitButton_Click to OnSubmitClicked
+        private void SubmitButton_Click(object sender, EventArgs e)
+        {
+            OnSubmitClicked(sender, e);
         }
     }
 }
