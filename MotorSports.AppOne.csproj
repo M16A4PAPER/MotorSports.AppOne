@@ -147,6 +147,9 @@
 	  <MauiXaml Update="Views\ViewEventStatus.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Views\ViewSponsorEvents.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Views\ViewUsersRolesPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

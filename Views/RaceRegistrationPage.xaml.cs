@@ -31,10 +31,8 @@ namespace MotorSports.AppOne.Views
                 EventId = eventId
             };
 
-            // Call API
             string response = await _apiService.RegisterTeamForRace(registration);
 
-            // Show success or failure message
             if (!response.Contains("Error"))
             {
                 await DisplayAlert("Success", "Team registered successfully!", "OK");

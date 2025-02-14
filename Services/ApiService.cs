@@ -37,7 +37,7 @@ namespace MotorSports.AppOne.Services
     => Post($"{BaseUrl}/participants", registration);
 
 
-        // ✅ Get Users and Roles (Updated)
+        // Get Users and Roles
         public async Task<List<UserRole>> GetUsersAndRoles()
         {
             try
@@ -53,6 +53,26 @@ namespace MotorSports.AppOne.Services
                 return new List<UserRole>();
             }
         }
+
+        public async Task<List<Event>> GetEventsBySponsor(int sponsorId)
+        {
+            try
+            {
+                var response = await client.GetAsync($"{BaseUrl}/sponsor/{sponsorId}");
+                if (!response.IsSuccessStatusCode) return new List<Event>();
+
+                var json = await response.Content.ReadAsStringAsync();
+                return JsonConvert.DeserializeObject<List<Event>>(json) ?? new List<Event>();
+            }
+            catch
+            {
+                return new List<Event>();
+            }
+        }
+
+        public Task<string> DeleteSponsorship(int eventId, int sponsorId)
+    => Delete($"{BaseUrl}/sponsors", new { EventId = eventId, SponsorId = sponsorId });
+
 
         //  Helper Methods
         private async Task<string> Get(string url)
